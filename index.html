@@ -30,17 +30,25 @@
       display: inline-block;
       margin-top: 30px;
       padding: 1em 2em;
-      background-color: #5865F2;
+      background-color: #212529;
       color: white;
       text-decoration: none;
       border-radius: 8px;
       font-weight: bold;
       font-size: 1.1rem;
-      transition: background 0.3s ease;
+      transition: background 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     .join-btn:hover {
-      background-color: #404eed;
+      background-color: #2a2f33;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+    }
+
+    .join-btn:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
 
     .menu-icon {
@@ -78,15 +86,23 @@
       color: white;
       margin: 10px 0;
       padding: 10px;
-      background-color: #5865F2;
+      background-color: #212529;
       border-radius: 5px;
       text-align: center;
-      transition: background 0.3s;
       font-size: 1rem;
+      transition: background 0.3s ease, transform 0.15s ease, box-shadow 0.3s ease;
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     }
 
     .nav-menu a:hover {
-      background-color: #404eed;
+      background-color: #2a2f33;
+      transform: translateY(-2px);
+      box-shadow: 0 6px 14px rgba(0, 0, 0, 0.3);
+    }
+
+    .nav-menu a:active {
+      transform: translateY(1px);
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
     }
 
     .menu-icon.active div:nth-child(1) {
@@ -169,14 +185,12 @@
 </head>
 <body>
 
-  <!-- Hamburger Menu Icon -->
   <div class="menu-icon" onclick="toggleMenu()">
     <div></div>
     <div></div>
     <div></div>
   </div>
 
-  <!-- Navigation Menu -->
   <div class="nav-menu">
     <a href="#" onclick="showSection('main', event)">Strona główna</a>
     <a href="#" onclick="showSection('about', event)">O nas</a>
@@ -186,32 +200,27 @@
     <a href="https://discord.gg/Yn4wrnSSXp" target="_blank">Dołącz do Discorda</a>
   </div>
 
-  <!-- Main Section -->
   <section id="main" class="section active hero">
     <h1>👻 PhantomZone</h1>
     <p>Najlepszy polski serwer Discord poświęcony grze Phasmophobia. Wspólne granie, pomoc, konkursy i dobra zabawa!</p>
     <a href="https://discord.gg/Yn4wrnSSXp" target="_blank" class="join-btn">Dołącz do PhantomZone!</a>
   </section>
 
-  <!-- About Section -->
   <section id="about" class="section">
     <h2>O nas</h2>
     <p>Jesteśmy społecznością skupioną wokół Phasmophobii — gry o łowcach duchów. Organizujemy wspólne gry, pomagamy nowym graczom i dzielimy się strachem i śmiechem!</p>
   </section>
 
-  <!-- Projects Section -->
   <section id="projects" class="section">
     <h2>Projekty</h2>
     <p>Tworzymy fanowskie poradniki, modyfikacje, organizujemy eventy i streamy — wszystko po to, by gra w Phasmophobię była jeszcze lepsza.</p>
   </section>
 
-  <!-- Contact Section -->
   <section id="contact" class="section">
     <h2>Kontakt</h2>
     <p>Najlepszym sposobem kontaktu z nami jest nasz serwer Discord. Tam znajdziesz pomoc, informacje i możliwość zgłaszania problemów.</p>
   </section>
 
-  <!-- Team Section -->
   <section id="team" class="section">
     <h2>Zespół</h2>
 
@@ -226,13 +235,11 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer>
     © 2025 PhantomZone | Stworzone przez fanów Phasmophobii 👻
   </footer>
 
   <script>
-    // Toggle menu
     function toggleMenu() {
       const menu = document.querySelector('.nav-menu');
       const icon = document.querySelector('.menu-icon');
@@ -240,7 +247,6 @@
       icon.classList.toggle('active');
     }
 
-    // Show section
     function showSection(sectionId, e) {
       if (e) e.preventDefault();
 
@@ -250,14 +256,12 @@
       const activeSection = document.getElementById(sectionId);
       activeSection.classList.add('active');
 
-      // Zamknij menu po kliknięciu
       const menu = document.querySelector('.nav-menu');
       const icon = document.querySelector('.menu-icon');
       menu.classList.remove('active');
       icon.classList.remove('active');
     }
 
-    // Zamknięcie menu po kliknięciu poza nim
     document.addEventListener('click', function (event) {
       const menu = document.querySelector('.nav-menu');
       const icon = document.querySelector('.menu-icon');
