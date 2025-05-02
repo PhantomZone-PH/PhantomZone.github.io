@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PhantomZone - Najlepszy serwer Phasmophobia</title>
   <style>
+    html {
+      scroll-behavior: smooth;
+    }
+
     body {
       margin: 0;
       font-family: 'Segoe UI', sans-serif;
@@ -19,17 +23,19 @@
       text-align: center;
       padding: 100px 20px;
       flex: 1;
+      transition: opacity 0.4s ease, transform 0.4s ease;
     }
 
     .join-btn {
       display: inline-block;
       margin-top: 30px;
-      padding: 15px 30px;
+      padding: 1em 2em;
       background-color: #5865F2;
       color: white;
       text-decoration: none;
       border-radius: 8px;
       font-weight: bold;
+      font-size: 1.1rem;
       transition: background 0.3s ease;
     }
 
@@ -37,7 +43,6 @@
       background-color: #404eed;
     }
 
-    /* Hamburger Menu */
     .menu-icon {
       display: block;
       position: absolute;
@@ -59,12 +64,13 @@
       display: none;
       flex-direction: column;
       position: absolute;
-      top: 50px;
-      right: 0;
+      top: 60px;
+      right: 10px;
       background-color: #444;
       padding: 20px;
       border-radius: 10px;
       box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.3);
+      z-index: 99;
     }
 
     .nav-menu a {
@@ -76,13 +82,13 @@
       border-radius: 5px;
       text-align: center;
       transition: background 0.3s;
+      font-size: 1rem;
     }
 
     .nav-menu a:hover {
       background-color: #404eed;
     }
 
-    /* Menu Toggle */
     .menu-icon.active div:nth-child(1) {
       transform: rotate(45deg);
       transform-origin: 5px 5px;
@@ -101,16 +107,27 @@
       display: flex;
     }
 
-    /* Content sections */
     .section {
       display: none;
+      padding: 80px 20px;
+      animation: fadeIn 0.4s ease;
     }
 
     .section.active {
       display: block;
     }
 
-    /* Footer */
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
     footer {
       text-align: center;
       padding: 20px;
@@ -118,9 +135,40 @@
       color: #aaa;
       margin-top: auto;
     }
+
+    .team-member {
+      background-color: #333;
+      padding: 20px;
+      margin: 10px auto;
+      border-radius: 10px;
+      max-width: 400px;
+      text-align: center;
+    }
+
+    .team-member h3 {
+      margin: 10px 0 5px;
+    }
+
+    .team-member p {
+      font-size: 0.9rem;
+      color: #ccc;
+    }
+
+    @media (max-width: 600px) {
+      .join-btn {
+        font-size: 1rem;
+        padding: 0.8em 1.5em;
+      }
+
+      .nav-menu {
+        width: 90%;
+        right: 5%;
+      }
+    }
   </style>
 </head>
 <body>
+
   <!-- Hamburger Menu Icon -->
   <div class="menu-icon" onclick="toggleMenu()">
     <div></div>
@@ -130,36 +178,52 @@
 
   <!-- Navigation Menu -->
   <div class="nav-menu">
-    <a href="#" onclick="showSection('main')">Strona główna</a>
-    <a href="#" onclick="showSection('about')">O nas</a>
-    <a href="#" onclick="showSection('projects')">Projekty</a>
-    <a href="#" onclick="showSection('contact')">Kontakt</a>
+    <a href="#" onclick="showSection('main', event)">Strona główna</a>
+    <a href="#" onclick="showSection('about', event)">O nas</a>
+    <a href="#" onclick="showSection('projects', event)">Projekty</a>
+    <a href="#" onclick="showSection('contact', event)">Kontakt</a>
+    <a href="#" onclick="showSection('team', event)">Zespół</a>
     <a href="https://discord.gg/Yn4wrnSSXp" target="_blank">Dołącz do Discorda</a>
   </div>
 
-  <!-- Main Section (Home Page) -->
+  <!-- Main Section -->
   <section id="main" class="section active hero">
     <h1>👻 PhantomZone</h1>
-    <p>Najlepszy serwer Discord dla fanów Phasmophobii</p>
+    <p>Najlepszy polski serwer Discord poświęcony grze Phasmophobia. Wspólne granie, pomoc, konkursy i dobra zabawa!</p>
     <a href="https://discord.gg/Yn4wrnSSXp" target="_blank" class="join-btn">Dołącz do PhantomZone!</a>
   </section>
 
   <!-- About Section -->
   <section id="about" class="section">
     <h2>O nas</h2>
-    <p>PhantomZone to społeczność pasjonatów gry Phasmophobia. Dołącz do nas i wspólnie z nami walcz z duchami!</p>
+    <p>Jesteśmy społecznością skupioną wokół Phasmophobii — gry o łowcach duchów. Organizujemy wspólne gry, pomagamy nowym graczom i dzielimy się strachem i śmiechem!</p>
   </section>
 
   <!-- Projects Section -->
   <section id="projects" class="section">
     <h2>Projekty</h2>
-    <p>Nasze projekty obejmują różnorodne aktywności związane z Phasmophobią, w tym fanowskie mody, streamy, i więcej!</p>
+    <p>Tworzymy fanowskie poradniki, modyfikacje, organizujemy eventy i streamy — wszystko po to, by gra w Phasmophobię była jeszcze lepsza.</p>
   </section>
 
   <!-- Contact Section -->
   <section id="contact" class="section">
     <h2>Kontakt</h2>
-    <p>Masz pytania? Skontaktuj się z nami poprzez Discord.</p>
+    <p>Najlepszym sposobem kontaktu z nami jest nasz serwer Discord. Tam znajdziesz pomoc, informacje i możliwość zgłaszania problemów.</p>
+  </section>
+
+  <!-- Team Section -->
+  <section id="team" class="section">
+    <h2>Zespół</h2>
+
+    <div class="team-member">
+      <h3>ッ_𝙎𝙋𝘼𝙆𝙆𝙊_ッ</h3>
+      <p><strong>Właściciel serwera</strong><br>Założyciel PhantomZone, czuwa nad całym serwerem i jego rozwojem.</p>
+    </div>
+
+    <div class="team-member">
+      <h3>𒆙_pacmanowiec_ez𒆙</h3>
+      <p><strong>Administrator</strong><br>Odpowiada za porządek, moderację i wsparcie techniczne.</p>
+    </div>
   </section>
 
   <!-- Footer -->
@@ -176,17 +240,33 @@
       icon.classList.toggle('active');
     }
 
-    // Show the selected section
-    function showSection(sectionId) {
+    // Show section
+    function showSection(sectionId, e) {
+      if (e) e.preventDefault();
+
       const sections = document.querySelectorAll('.section');
       sections.forEach((section) => section.classList.remove('active'));
 
       const activeSection = document.getElementById(sectionId);
       activeSection.classList.add('active');
-      
-      // Close the menu after selection
-      toggleMenu();
+
+      // Zamknij menu po kliknięciu
+      const menu = document.querySelector('.nav-menu');
+      const icon = document.querySelector('.menu-icon');
+      menu.classList.remove('active');
+      icon.classList.remove('active');
     }
+
+    // Zamknięcie menu po kliknięciu poza nim
+    document.addEventListener('click', function (event) {
+      const menu = document.querySelector('.nav-menu');
+      const icon = document.querySelector('.menu-icon');
+      if (!menu.contains(event.target) && !icon.contains(event.target)) {
+        menu.classList.remove('active');
+        icon.classList.remove('active');
+      }
+    });
   </script>
+
 </body>
 </html>
