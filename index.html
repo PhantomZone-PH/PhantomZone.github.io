@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>PhantomZone - Serwer Phasmophobia</title>
+  <link rel="icon" href="https://cdn-icons-png.flaticon.com/512/497/497738.png" type="image/png">
   <style>
     html {
       scroll-behavior: smooth;
@@ -17,7 +18,7 @@
       display: flex;
       flex-direction: column;
       min-height: 100vh;
-      text-align: center; /* Wyśrodkowanie tekstu */
+      text-align: center;
     }
 
     .hero {
@@ -114,7 +115,7 @@
       display: none;
       padding: 80px 20px;
       animation: fadeIn 0.4s ease;
-      text-align: center; /* Wyśrodkowanie tekstu w sekcjach */
+      text-align: center;
     }
 
     .section.active {
@@ -142,12 +143,19 @@
       position: relative;
     }
 
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      padding: 20px;
+      max-width: 1000px;
+      margin: auto;
+    }
+
     .team-member {
       background-color: #333;
       padding: 20px;
-      margin: 10px auto;
       border-radius: 10px;
-      max-width: 400px;
       text-align: center;
     }
 
@@ -158,6 +166,55 @@
     .team-member p {
       font-size: 0.9rem;
       color: #ccc;
+    }
+
+    .faq-item {
+      margin: 15px auto;
+      max-width: 600px;
+      text-align: left;
+    }
+
+    .faq-question {
+      background-color: #222;
+      padding: 15px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: background-color 0.3s;
+    }
+
+    .faq-answer {
+      background-color: #333;
+      display: none;
+      padding: 10px 15px;
+      border-radius: 0 0 8px 8px;
+      color: #ccc;
+    }
+
+    .faq-question:hover {
+      background-color: #444;
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      display: none;
+      background-color: #212529;
+      color: white;
+      border: none;
+      border-radius: 50%;
+      width: 50px;
+      height: 50px;
+      font-size: 24px;
+      cursor: pointer;
+      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      transition: transform 0.3s ease;
+      z-index: 200;
+    }
+
+    #backToTop:hover {
+      transform: scale(1.1);
     }
 
     @media (max-width: 600px) {
@@ -177,9 +234,7 @@
 
   <!-- Hamburger Menu Icon -->
   <div class="menu-icon" onclick="toggleMenu()">
-    <div></div>
-    <div></div>
-    <div></div>
+    <div></div><div></div><div></div>
   </div>
 
   <!-- Navigation Menu -->
@@ -189,6 +244,7 @@
     <a href="#" onclick="showSection('projects', event)">Projekty</a>
     <a href="#" onclick="showSection('contact', event)">Kontakt</a>
     <a href="#" onclick="showSection('team', event)">Zespół</a>
+    <a href="#" onclick="showSection('faq', event)">FAQ</a>
     <a href="https://discord.gg/Yn4wrnSSXp" target="_blank">Dołącz do Discorda</a>
   </div>
 
@@ -199,80 +255,35 @@
     <a href="https://discord.gg/Yn4wrnSSXp" target="_blank" class="join-btn">Dołącz do PhantomZone!</a>
   </section>
 
-  <!-- About Section -->
+  <!-- About -->
   <section id="about" class="section">
     <h2>O nas</h2>
     <p>Jesteśmy społecznością skupioną wokół Phasmophobii — gry o łowcach duchów. Organizujemy wspólne gry, pomagamy nowym graczom i dzielimy się strachem i śmiechem!</p>
   </section>
 
-  <!-- Projects Section -->
+  <!-- Projects -->
   <section id="projects" class="section">
     <h2>Projekty</h2>
     <p>Tworzymy fanowskie poradniki, modyfikacje, organizujemy eventy i streamy — wszystko po to, by gra w Phasmophobię była jeszcze lepsza.</p>
   </section>
 
-  <!-- Contact Section -->
+  <!-- Contact -->
   <section id="contact" class="section">
     <h2>Kontakt</h2>
     <p>Najlepszym sposobem kontaktu z nami jest nasz serwer Discord. Tam znajdziesz pomoc, informacje i możliwość zgłaszania problemów.</p>
   </section>
 
-  <!-- Team Section -->
+  <!-- Team -->
   <section id="team" class="section">
     <h2>Zespół</h2>
-
-    <div class="team-member">
-      <h3>ッ_𝙎𝙋𝘼𝙆𝙆𝙊_ッ</h3>
-      <p><strong>Właściciel serwera</strong><br>Założyciel PhantomZone, czuwa nad całym serwerem i jego rozwojem.</p>
-    </div>
-
-    <div class="team-member">
-      <h3>𒆙_pacmanowiec_ez𒆙</h3>
-      <p><strong>Administrator</strong><br>Odpowiada za porządek, moderację i wsparcie techniczne.</p>
-    </div>
-  </section>
-
-  <!-- Footer -->
-  <footer>
-    © 2025 PhantomZone | Stworzone przez fanów Phasmophobii 👻
-  </footer>
-
-  <script>
-    // Toggle menu
-    function toggleMenu() {
-      const menu = document.querySelector('.nav-menu');
-      const icon = document.querySelector('.menu-icon');
-      menu.classList.toggle('active');
-      icon.classList.toggle('active');
-    }
-
-    // Show section
-    function showSection(sectionId, e) {
-      if (e) e.preventDefault();
-
-      const sections = document.querySelectorAll('.section');
-      sections.forEach((section) => section.classList.remove('active'));
-
-      const activeSection = document.getElementById(sectionId);
-      activeSection.classList.add('active');
-
-      // Zamknij menu po kliknięciu
-      const menu = document.querySelector('.nav-menu');
-      const icon = document.querySelector('.menu-icon');
-      menu.classList.remove('active');
-      icon.classList.remove('active');
-    }
-
-    // Zamknięcie menu po kliknięciu poza nim
-    document.addEventListener('click', function (event) {
-      const menu = document.querySelector('.nav-menu');
-      const icon = document.querySelector('.menu-icon');
-      if (!menu.contains(event.target) && !icon.contains(event.target)) {
-        menu.classList.remove('active');
-        icon.classList.remove('active');
-      }
-    });
-  </script>
-
-</body>
-</html>
+    <div class="team-grid">
+      <div class="team-member">
+        <h3>ッ_𝙎𝙋𝘼𝙆𝙆𝙊_ッ</h3>
+<p>Właściciel Serwera</p>
+</div>
+<div class="team-member">
+<h3>𒆙_pacmanowiec_ez𒆙</h3>
+<p>Administrator</p>
+</div>
+</div>
+</section> <!-- FAQ --> <section id="faq" class="section"> <h2>FAQ</h2> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Jak mogę zgłosić problem lub błąd na serwerze?</div> <div class="faq-answer">Można zgłosić problemy lub błędy na naszym serwerze Discord. Wystarczy napisać w odpowiednim kanale lub skontaktować się z administracją.</div> </div> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Czy mogę dołączyć do gry, jeśli nie mam jeszcze doświadczenia w Phasmophobii?</div> <div class="faq-answer">Tak, absolutnie! Nasza społeczność jest otwarta na nowych graczy, którzy mogą liczyć na pomoc i wskazówki.</div> </div> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Czy mogę zagrać na serwerze PhantomZone, jeśli nie jestem na Discordzie?</div> <div class="faq-answer">Niestety, nasz serwer działa głównie na Discordzie, gdzie organizujemy gry, spotkania i komunikację. Zachęcamy do dołączenia do naszego serwera.</div> </div> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Czy są jakieś zasady dotyczące zachowania na serwerze?</div> <div class="faq-answer">Tak, obowiązują zasady dotyczące szacunku wobec innych graczy. Zabronione jest obrażanie innych, spamowanie oraz jakiekolwiek formy toksycznego zachowania.</div> </div> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Czy mogę zaprosić swoich znajomych do gry na serwerze?</div> <div class="faq-answer">Oczywiście! Im więcej osób, tym lepsza zabawa. Pamiętaj, aby wszyscy zaproszeni dołączali na nasz serwer Discord.</div> </div> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Jakie są wymagania sprzętowe do gry w Phasmophobię?</div> <div class="faq-answer">Gra działa na komputerach z systemem Windows 10. Wymagania obejmują m.in. procesor Intel Core i5, 8GB RAM oraz kartę graficzną z serii GTX 1060.</div> </div> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Czy muszę mieć mikrofon?</div> <div class="faq-answer">Nie, ale znacznie ułatwia to komunikację w grze i na Discordzie.</div> </div> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Czy gramy tylko w Phasmophobię?</div> <div class="faq-answer">Phasmophobia to nasza główna gra, ale czasem organizujemy też wspólne granie w inne tytuły grozy.</div> </div> </section> <!-- Footer --> <footer> <p>&copy; 2025 PhantomZone</p> </footer> <script> function toggleFAQ(element) { const answer = element.nextElementSibling; if (answer.style.display === "block") { answer.style.display = "none"; } else { answer.style.display = "block"; } } function toggleMenu() { const menu = document.querySelector('.nav-menu'); const icon = document.querySelector('.menu-icon'); menu.classList.toggle('active'); icon.classList.toggle('active'); } function showSection(sectionId, event) { event.preventDefault(); const sections = document.querySelectorAll('.section'); sections.forEach(section => section.classList.remove('active')); const section = document.getElementById(sectionId); section.classList.add('active'); } </script> </body> </html>
