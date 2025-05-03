@@ -21,6 +21,12 @@
       text-align: center;
     }
 
+    main {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+    }
+
     .hero {
       text-align: center;
       padding: 100px 20px;
@@ -134,13 +140,20 @@
     }
 
     footer {
+      background-color: #333;
+      color: #fff;
       text-align: center;
-      padding: 20px;
-      background-color: #111;
-      color: #aaa;
-      margin-top: auto;
-      width: 100%;
-      position: relative;
+      padding: 10px;
+      font-size: 0.9rem;
+      margin-top: 20px;
+    }
+
+    /* Mobile responsiveness */
+    @media (max-width: 768px) {
+      footer p {
+        font-size: 0.8rem;
+        padding: 8px;
+      }
     }
 
     .team-grid {
@@ -249,41 +262,108 @@
   </div>
 
   <!-- Main Section -->
-  <section id="main" class="section active hero">
-    <h1>👻 PhantomZone</h1>
-    <p>Polski serwer Discord poświęcony grze Phasmophobia. Wspólne granie, pomoc, konkursy i dobra zabawa!</p>
-    <a href="https://discord.gg/Yn4wrnSSXp" target="_blank" class="join-btn">Dołącz do PhantomZone!</a>
-  </section>
+  <main>
+    <section id="main" class="section active hero">
+      <h1>👻 PhantomZone</h1>
+      <p>Polski serwer Discord poświęcony grze Phasmophobia. Wspólne granie, pomoc, konkursy i dobra zabawa!</p>
+      <a href="https://discord.gg/Yn4wrnSSXp" target="_blank" class="join-btn">Dołącz do PhantomZone!</a>
+    </section>
 
-  <!-- About -->
-  <section id="about" class="section">
-    <h2>O nas</h2>
-    <p>Jesteśmy społecznością skupioną wokół Phasmophobii — gry o łowcach duchów. Organizujemy wspólne gry, pomagamy nowym graczom i dzielimy się strachem i śmiechem!</p>
-  </section>
+    <!-- About -->
+    <section id="about" class="section">
+      <h2>O nas</h2>
+      <p>Jesteśmy społecznością skupioną wokół Phasmophobii — gry o łowcach duchów. Organizujemy wspólne gry, pomagamy nowym graczom i dzielimy się strachem i śmiechem!</p>
+    </section>
 
-  <!-- Projects -->
-  <section id="projects" class="section">
-    <h2>Projekty</h2>
-    <p>Tworzymy fanowskie poradniki, modyfikacje, organizujemy eventy i streamy — wszystko po to, by gra w Phasmophobię była jeszcze lepsza.</p>
-  </section>
+    <!-- Projects -->
+    <section id="projects" class="section">
+      <h2>Projekty</h2>
+      <p>Tworzymy fanowskie poradniki, modyfikacje, organizujemy eventy i streamy — wszystko po to, by gra w Phasmophobię była jeszcze lepsza.</p>
+    </section>
 
-  <!-- Contact -->
-  <section id="contact" class="section">
-    <h2>Kontakt</h2>
-    <p>Najlepszym sposobem kontaktu z nami jest nasz serwer Discord. Tam znajdziesz pomoc, informacje i możliwość zgłaszania problemów.</p>
-  </section>
+    <!-- Contact -->
+    <section id="contact" class="section">
+      <h2>Kontakt</h2>
+      <p>Najlepszym sposobem kontaktu z nami jest nasz serwer Discord. Tam znajdziesz pomoc, informacje i możliwość zgłaszania problemów.</p>
+    </section>
 
-  <!-- Team -->
-  <section id="team" class="section">
-    <h2>Zespół</h2>
-    <div class="team-grid">
-      <div class="team-member">
-        <h3>ッ_𝙎𝙋𝘼𝙆𝙆𝙊_ッ</h3>
-<p>Właściciel Serwera</p>
-</div>
-<div class="team-member">
-<h3>𒆙_pacmanowiec_ez𒆙</h3>
-<p>Administrator</p>
-</div>
-</div>
-</section> <!-- FAQ --> <section id="faq" class="section"> <h2>FAQ</h2> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Jak mogę zgłosić problem lub błąd na serwerze?</div> <div class="faq-answer">Można zgłosić problemy lub błędy na naszym serwerze Discord. Wystarczy napisać w odpowiednim kanale lub skontaktować się z administracją.</div> </div> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Czy mogę dołączyć do gry, jeśli nie mam jeszcze doświadczenia w Phasmophobii?</div> <div class="faq-answer">Tak, absolutnie! Nasza społeczność jest otwarta na nowych graczy, którzy mogą liczyć na pomoc i wskazówki.</div> </div> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Czy mogę zagrać na serwerze PhantomZone, jeśli nie jestem na Discordzie?</div> <div class="faq-answer">Niestety, nasz serwer działa głównie na Discordzie, gdzie organizujemy gry, spotkania i komunikację. Zachęcamy do dołączenia do naszego serwera.</div> </div> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Czy są jakieś zasady dotyczące zachowania na serwerze?</div> <div class="faq-answer">Tak, obowiązują zasady dotyczące szacunku wobec innych graczy. Zabronione jest obrażanie innych, spamowanie oraz jakiekolwiek formy toksycznego zachowania.</div> </div> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Czy mogę zaprosić swoich znajomych do gry na serwerze?</div> <div class="faq-answer">Oczywiście! Im więcej osób, tym lepsza zabawa. Pamiętaj, aby wszyscy zaproszeni dołączali na nasz serwer Discord.</div> </div> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Jakie są wymagania sprzętowe do gry w Phasmophobię?</div> <div class="faq-answer">Gra działa na komputerach z systemem Windows 10. Wymagania obejmują m.in. procesor Intel Core i5, 8GB RAM oraz kartę graficzną z serii GTX 1060.</div> </div> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Czy muszę mieć mikrofon?</div> <div class="faq-answer">Nie, ale znacznie ułatwia to komunikację w grze i na Discordzie.</div> </div> <div class="faq-item"> <div class="faq-question" onclick="toggleFAQ(this)">Czy gramy tylko w Phasmophobię?</div> <div class="faq-answer">Phasmophobia to nasza główna gra, ale czasem organizujemy też wspólne granie w inne tytuły grozy.</div> </div> </section> <!-- Footer --> <footer> <p>&copy; 2025 PhantomZone | Stworzone przez fanów Phasmophobii👻</p> </footer> <script> function toggleFAQ(element) { const answer = element.nextElementSibling; if (answer.style.display === "block") { answer.style.display = "none"; } else { answer.style.display = "block"; } } function toggleMenu() { const menu = document.querySelector('.nav-menu'); const icon = document.querySelector('.menu-icon'); menu.classList.toggle('active'); icon.classList.toggle('active'); } function showSection(sectionId, event) { event.preventDefault(); const sections = document.querySelectorAll('.section'); sections.forEach(section => section.classList.remove('active')); const section = document.getElementById(sectionId); section.classList.add('active'); } </script> </body> </html>
+    <!-- Team -->
+    <section id="team" class="section">
+      <h2>Zespół</h2>
+      <div class="team-grid">
+               <div class="team-member">
+          <h3>ッ_𝙎𝙋𝘼𝙆𝙆𝙊_ッ</h3>
+          <p>Właściciel serwera. Odpowiada za organizację, rozwój i całą strukturę PhantomZone.</p>
+        </div>
+        <div class="team-member">
+          <h3>𒆙_pacmanowiec_ez𒆙</h3>
+          <p>Administrator. Dba o porządek na serwerze i pomaga w rozwiązywaniu problemów technicznych.</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq" class="section">
+      <h2>FAQ</h2>
+      <div class="faq-item">
+        <div class="faq-question">Jak dołączyć do serwera PhantomZone?</div>
+        <div class="faq-answer">Aby dołączyć, wystarczy kliknąć na przycisk „Dołącz do PhantomZone!” i zaakceptować zaproszenie na Discordzie.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Czy serwer jest płatny?</div>
+        <div class="faq-answer">Nie, serwer PhantomZone jest całkowicie darmowy i otwarty dla każdego, kto chce dołączyć do naszej społeczności.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-question">Jakie zasady obowiązują na serwerze?</div>
+        <div class="faq-answer">Na serwerze obowiązują standardowe zasady netykiety — szanuj innych graczy, nie spamuj i nie używaj wulgaryzmów.</div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Back to Top Button -->
+  <button id="backToTop" onclick="scrollToTop()">↑</button>
+
+  <footer>
+    <p>&copy; 2025 PhantomZone | Stworzone przez fanów Phasmophobii👻</p>
+  </footer>
+
+  <script>
+    // Toggle menu visibility
+    function toggleMenu() {
+      document.querySelector('.menu-icon').classList.toggle('active');
+      document.querySelector('.nav-menu').classList.toggle('active');
+    }
+
+    // Show selected section
+    function showSection(sectionId, event) {
+      event.preventDefault();
+      const sections = document.querySelectorAll('.section');
+      sections.forEach((section) => section.classList.remove('active'));
+      const selectedSection = document.getElementById(sectionId);
+      selectedSection.classList.add('active');
+      window.scrollTo(0, 0); // Scroll to the top
+      document.querySelector('.nav-menu').classList.remove('active');
+      document.querySelector('.menu-icon').classList.remove('active');
+    }
+
+    // Show "Back to Top" button
+    window.onscroll = function () {
+      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
+        document.getElementById('backToTop').style.display = 'block';
+      } else {
+        document.getElementById('backToTop').style.display = 'none';
+      }
+    };
+
+    // Scroll to top
+    function scrollToTop() {
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
+    }
+  </script>
+
+</body>
+</html>
+
