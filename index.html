@@ -291,13 +291,13 @@
     <section id="team" class="section">
       <h2>Zespół</h2>
       <div class="team-grid">
-               <div class="team-member">
+        <div class="team-member">
           <h3>ッ_𝙎𝙋𝘼𝙆𝙆𝙊_ッ</h3>
-          <p>Właściciel serwera. Odpowiada za organizację, rozwój i całą strukturę PhantomZone.</p>
+          <p><strong>Właściciel serwera.</strong><br> Odpowiada za organizację, rozwój i całą strukturę PhantomZone.</p>
         </div>
         <div class="team-member">
           <h3>𒆙_pacmanowiec_ez𒆙</h3>
-          <p>Administrator. Dba o porządek na serwerze i pomaga w rozwiązywaniu problemów technicznych.</p>
+          <p><strong>Administrator.</strong><br> Dba o porządek na serwerze i pomaga w rozwiązywaniu problemów społeczności. Zapewnia płynność działania i moderuje wydarzenia.</p>
         </div>
       </div>
     </section>
@@ -305,17 +305,41 @@
     <!-- FAQ -->
     <section id="faq" class="section">
       <h2>FAQ</h2>
+
       <div class="faq-item">
-        <div class="faq-question">Jak dołączyć do serwera PhantomZone?</div>
-        <div class="faq-answer">Aby dołączyć, wystarczy kliknąć na przycisk „Dołącz do PhantomZone!” i zaakceptować zaproszenie na Discordzie.</div>
+        <div class="faq-question" onclick="toggleAnswer(this)">
+          Jak dołączyć do serwera PhantomZone?
+        </div>
+        <div class="faq-answer">
+          Aby dołączyć do serwera, wystarczy kliknąć w przycisk "Dołącz do PhantomZone!" na naszej stronie głównej. Przekieruje Cię to bezpośrednio do zaproszenia na nasz serwer Discord.
+        </div>
       </div>
+
       <div class="faq-item">
-        <div class="faq-question">Czy serwer jest płatny?</div>
-        <div class="faq-answer">Nie, serwer PhantomZone jest całkowicie darmowy i otwarty dla każdego, kto chce dołączyć do naszej społeczności.</div>
+        <div class="faq-question" onclick="toggleAnswer(this)">
+          Jakie wymagania trzeba spełnić, aby grać na serwerze?
+        </div>
+        <div class="faq-answer">
+          Wymagania są minimalne! Wystarczy mieć grę Phasmophobia na platformie Steam i chęć do wspólnej zabawy. Zapraszamy wszystkich, bez względu na doświadczenie!
+        </div>
       </div>
+
       <div class="faq-item">
-        <div class="faq-question">Jakie zasady obowiązują na serwerze?</div>
-        <div class="faq-answer">Na serwerze obowiązują standardowe zasady netykiety — szanuj innych graczy, nie spamuj i nie używaj wulgaryzmów.</div>
+        <div class="faq-question" onclick="toggleAnswer(this)">
+          Czy mogę zaprosić swoich znajomych na serwer?
+        </div>
+        <div class="faq-answer">
+          Tak, możesz zaprosić każdego, kto chce dołączyć do naszej wspólnoty. Wystarczy podać im zaproszenie do naszego serwera Discord!
+        </div>
+      </div>
+
+      <div class="faq-item">
+        <div class="faq-question" onclick="toggleAnswer(this)">
+          Co robić, gdy napotkam problem na serwerze?
+        </div>
+        <div class="faq-answer">
+          Jeśli napotkasz jakikolwiek problem, skontaktuj się z administratorem lub skorzystaj z kanałów wsparcia na naszym serwerze Discord. Zawsze staramy się pomóc jak najszybciej!
+        </div>
       </div>
     </section>
   </main>
@@ -324,46 +348,48 @@
   <button id="backToTop" onclick="scrollToTop()">↑</button>
 
   <footer>
-    <p>&copy; 2025 PhantomZone | Stworzone przez fanów Phasmophobii👻</p>
+    <p>© 2025 PhantomZone | Stworzone przez fanów Phasmophobii👻</p> 
   </footer>
 
   <script>
-    // Toggle menu visibility
+    // Menu Toggle
     function toggleMenu() {
       document.querySelector('.menu-icon').classList.toggle('active');
       document.querySelector('.nav-menu').classList.toggle('active');
     }
 
-    // Show selected section
+    // Show Section
     function showSection(sectionId, event) {
       event.preventDefault();
       const sections = document.querySelectorAll('.section');
-      sections.forEach((section) => section.classList.remove('active'));
+      sections.forEach((section) => {
+        section.classList.remove('active');
+      });
+
       const selectedSection = document.getElementById(sectionId);
       selectedSection.classList.add('active');
-      window.scrollTo(0, 0); // Scroll to the top
-      document.querySelector('.nav-menu').classList.remove('active');
-      document.querySelector('.menu-icon').classList.remove('active');
     }
 
-    // Show "Back to Top" button
-    window.onscroll = function () {
-      if (document.body.scrollTop > 200 || document.documentElement.scrollTop > 200) {
-        document.getElementById('backToTop').style.display = 'block';
-      } else {
-        document.getElementById('backToTop').style.display = 'none';
-      }
-    };
+    // FAQ Answer Toggle
+    function toggleAnswer(element) {
+      const answer = element.nextElementSibling;
+      answer.style.display = (answer.style.display === "block") ? "none" : "block";
+    }
 
-    // Scroll to top
+    // Back to Top Button
+    window.onscroll = function() {
+      const backToTopButton = document.getElementById('backToTop');
+      if (document.body.scrollTop > 300 || document.documentElement.scrollTop > 300) {
+        backToTopButton.style.display = "block";
+      } else {
+        backToTopButton.style.display = "none";
+      }
+    }
+
     function scrollToTop() {
-      window.scrollTo({
-        top: 0,
-        behavior: 'smooth'
-      });
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }
   </script>
-
 </body>
 </html>
-
+ 
