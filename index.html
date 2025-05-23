@@ -258,7 +258,7 @@
     <a href="#" onclick="showSection('contact', event)">Kontakt</a>
     <a href="#" onclick="showSection('team', event)">Zespół</a>
     <a href="#" onclick="showSection('faq', event)">FAQ</a>
-    <a href="#" onclick="showSection('Games', event)">Gry</a>
+    <a href="#" onclick="showSection('Book', event)">Księga</a>
     <a href="https://discord.gg/Yn4wrnSSXp" target="_blank">Dołącz do Discorda</a>
   </div>
 
@@ -350,13 +350,43 @@
     </section>
   </main>
 
- <!-- Games -->
-    <section id="Games" class="section">
-      <h2>Gry</h2>
-      <p>W TRAKCIE TWORZENIA ZAKŁADKI!!!</p>
-      <p>Będą Tu Nasze Różne gry :)</p>
-      <p>Jak na razie nie ma żadnego terminu powstania tej zakładki</p>
-    </section>
+ <!-- Tajny wpis z dziennika -->
+<div id="secret-entry" style="display:none; background-color:#111; color:#ccc; padding:20px; border-radius:10px; font-family:monospace;">
+  <h3>📖 Dziennik Śledczego Zjawisk Nadprzyrodzonych – Wpis #47</h3>
+  <p><strong>Data:</strong> [Nieznana]<br>
+  <strong>Lokalizacja:</strong> Pokój, w którym czas zatrzymał się o północy.</p>
+
+  <p>Wszedłem cicho, czując jak temperatura w pomieszczeniu nagle spadła. W kącie paliła się świeca – jej światło nie dawało ciepła, tylko złudne poczucie bezpieczeństwa. Była tam też taca z pozornie zwyczajnymi przedmiotami – perfumy, pudełko, coś jak szklany słoik. Ale to <strong>lustro</strong>...</p>
+
+  <p>Okrągłe. Gładkie. I puste.</p>
+
+  <p>Patrząc w nie, nie widziałem swojego odbicia. Tylko ciemność – gęstą i głuchą jak śmierć. W mroku majaczył kształt… sylwetka? Może to był tylko cień… ale może <em>coś patrzyło na mnie z drugiej strony</em>.</p>
+
+  <p>Świeca zadrżała. Płomień przechylił się, jakby ktoś przeszedł obok. Nikogo tam nie było.</p>
+
+  <p>Zostawiłem sprzęt – EMF, kamerę, termometr. Żaden nie reagował.</p>
+
+  <p>Ale wiem, co widziałem.</p>
+
+  <p>To nie było zwykłe lustro. To <strong>brama</strong>.</p>
+
+  <p>I ktoś, lub coś, <em>czeka po drugiej stronie</em>.</p>
+</div>
+
+<script>
+  // Sekretny kod aktywujący wpis po wpisaniu "MIRROR"
+  document.addEventListener("keydown", function(event) {
+    window.secretCode = (window.secretCode || "") + event.key.toUpperCase();
+    if (window.secretCode.includes("MIRROR")) {
+      document.getElementById("secret-entry").style.display = "block";
+    }
+    if (window.secretCode.length > 20) {
+      window.secretCode = window.secretCode.slice(-10); // ogranicz długość
+    }
+  });
+</script>
+
+    
 
 
   <!-- Back to Top Button -->
