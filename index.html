@@ -350,38 +350,35 @@
     </section>
   </main>
 
- <!-- Tajny wpis z dziennika -->
-<div id="secret-entry" style="display:none; background-color:#111; color:#ccc; padding:20px; border-radius:10px; font-family:monospace;">
-  <h3>📖 Dziennik Śledczego Zjawisk Nadprzyrodzonych – Wpis #47</h3>
-  <p><strong>Data:</strong> [Nieznana]<br>
-  <strong>Lokalizacja:</strong> Pokój, w którym czas zatrzymał się o północy.</p>
-
-  <p>Wszedłem cicho, czując jak temperatura w pomieszczeniu nagle spadła. W kącie paliła się świeca – jej światło nie dawało ciepła, tylko złudne poczucie bezpieczeństwa. Była tam też taca z pozornie zwyczajnymi przedmiotami – perfumy, pudełko, coś jak szklany słoik. Ale to <strong>lustro</strong>...</p>
-
-  <p>Okrągłe. Gładkie. I puste.</p>
-
-  <p>Patrząc w nie, nie widziałem swojego odbicia. Tylko ciemność – gęstą i głuchą jak śmierć. W mroku majaczył kształt… sylwetka? Może to był tylko cień… ale może <em>coś patrzyło na mnie z drugiej strony</em>.</p>
-
-  <p>Świeca zadrżała. Płomień przechylił się, jakby ktoś przeszedł obok. Nikogo tam nie było.</p>
-
-  <p>Zostawiłem sprzęt – EMF, kamerę, termometr. Żaden nie reagował.</p>
-
-  <p>Ale wiem, co widziałem.</p>
-
-  <p>To nie było zwykłe lustro. To <strong>brama</strong>.</p>
-
-  <p>I ktoś, lub coś, <em>czeka po drugiej stronie</em>.</p>
+<!-- Modal (ukryty domyślnie) -->
+<div id="mirrorModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background-color:rgba(0,0,0,0.95); z-index:9999; display:flex; align-items:center; justify-content:center;">
+  <div style="background-color:#111; color:#ccc; padding:30px; border-radius:15px; font-family:monospace; max-width:600px; text-align:left; box-shadow:0 0 20px crimson; position:relative;">
+    <button onclick="document.getElementById('mirrorModal').style.display='none'" style="position:absolute; top:10px; right:15px; background:none; border:none; color:#aaa; font-size:20px; cursor:pointer;">✖</button>
+    <h3>📖 Dziennik Śledczego – Wpis #47</h3>
+    <p><strong>Data:</strong> Nieznana<br>
+       <strong>Lokalizacja:</strong> Pokój, w którym czas zatrzymał się o północy.</p>
+    <p>W kącie paliła się świeca. Lustro było zbyt ciche. Zbyt puste.<br>
+       Nie widziałem swojego odbicia... tylko coś, co patrzyło z drugiej strony.</p>
+    <p><em>To nie było zwykłe lustro.<br>To była brama.</em></p>
+  </div>
 </div>
 
 <script>
-  // Sekretny kod aktywujący wpis po wpisaniu "MIRROR"
+  let inputSequence = "";
+
   document.addEventListener("keydown", function(event) {
-    window.secretCode = (window.secretCode || "") + event.key.toUpperCase();
-    if (window.secretCode.includes("MIRROR")) {
-      document.getElementById("secret-entry").style.display = "block";
+    // Ignoruj wpisywanie w polach formularzy
+    if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return;
+
+    inputSequence += event.key.toUpperCase();
+
+    if (inputSequence.includes("MIRROR")) {
+      document.getElementById("mirrorModal").style.display = "flex";
+      inputSequence = ""; // wyczyść ciąg
     }
-    if (window.secretCode.length > 20) {
-      window.secretCode = window.secretCode.slice(-10); // ogranicz długość
+
+    if (inputSequence.length > 20) {
+      inputSequence = inputSequence.slice(-10); // limit znaków
     }
   });
 </script>
