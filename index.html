@@ -350,10 +350,27 @@
     </section>
   </main>
 
-<!-- Modal (ukryty domyślnie) -->
-<div id="mirrorModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background-color:rgba(0,0,0,0.95); z-index:9999; display:flex; align-items:center; justify-content:center;">
-  <div style="background-color:#111; color:#ccc; padding:30px; border-radius:15px; font-family:monospace; max-width:600px; text-align:left; box-shadow:0 0 20px crimson; position:relative;">
-    <button onclick="document.getElementById('mirrorModal').style.display='none'" style="position:absolute; top:10px; right:15px; background:none; border:none; color:#aaa; font-size:20px; cursor:pointer;">✖</button>
+<!-- 🔘 PRZYCISK / ZAKŁADKA -->
+<button onclick="openJournal()" style="padding:10px 20px; font-size:16px; border:none; border-radius:8px; background:#222; color:#eee; cursor:pointer; box-shadow:0 0 5px #444;">
+  📖 Księga
+</button>
+
+<!-- 📚 MODAL – lista wpisów -->
+<div id="journalModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background-color:rgba(0,0,0,0.95); z-index:9998; display:flex; align-items:center; justify-content:center;">
+  <div style="background:#111; color:#eee; padding:30px; border-radius:15px; font-family:monospace; width:90%; max-width:500px; box-shadow:0 0 20px #8b0000; position:relative;">
+    <button onclick="closeJournal()" style="position:absolute; top:10px; right:15px; background:none; border:none; color:#aaa; font-size:20px; cursor:pointer;">✖</button>
+    <h2>📖 Księga Dzienników</h2>
+    <ul style="list-style:none; padding:0; margin-top:20px;">
+      <li><button onclick="openEntry(47)" style="background:none; border:none; color:#ccc; font-size:16px; cursor:pointer; margin:10px 0; text-align:left;">• Wpis #47</button></li>
+      <!-- Można dodać więcej wpisów tutaj -->
+    </ul>
+  </div>
+</div>
+
+<!-- 🕯️ MODAL – treść dziennika -->
+<div id="entryModal" style="display:none; position:fixed; top:0; left:0; width:100vw; height:100vh; background-color:rgba(0,0,0,0.95); z-index:9999; display:flex; align-items:center; justify-content:center;">
+  <div style="background:#111; color:#ccc; padding:30px; border-radius:15px; font-family:monospace; max-width:600px; text-align:left; box-shadow:0 0 20px crimson; position:relative;">
+    <button onclick="closeEntry()" style="position:absolute; top:10px; right:15px; background:none; border:none; color:#aaa; font-size:20px; cursor:pointer;">✖</button>
     <h3>📖 Dziennik Śledczego – Wpis #47</h3>
     <p><strong>Data:</strong> Nieznana<br>
        <strong>Lokalizacja:</strong> Pokój, w którym czas zatrzymał się o północy.</p>
@@ -364,27 +381,24 @@
 </div>
 
 <script>
-  let inputSequence = "";
+  function openJournal() {
+    document.getElementById("journalModal").style.display = "flex";
+  }
 
-  document.addEventListener("keydown", function(event) {
-    // Ignoruj wpisywanie w polach formularzy
-    if (event.target.tagName === 'INPUT' || event.target.tagName === 'TEXTAREA') return;
+  function closeJournal() {
+    document.getElementById("journalModal").style.display = "none";
+  }
 
-    inputSequence += event.key.toUpperCase();
+  function openEntry(entryNumber) {
+    // Można dodać obsługę wielu wpisów przez numer
+    document.getElementById("journalModal").style.display = "none";
+    document.getElementById("entryModal").style.display = "flex";
+  }
 
-    if (inputSequence.includes("MIRROR")) {
-      document.getElementById("mirrorModal").style.display = "flex";
-      inputSequence = ""; // wyczyść ciąg
-    }
-
-    if (inputSequence.length > 20) {
-      inputSequence = inputSequence.slice(-10); // limit znaków
-    }
-  });
+  function closeEntry() {
+    document.getElementById("entryModal").style.display = "none";
+  }
 </script>
-
-    
-
 
   <!-- Back to Top Button -->
   <button id="backToTop" onclick="scrollToTop()">↑</button>
