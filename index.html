@@ -1,593 +1,490 @@
 <!DOCTYPE html>
 <html lang="pl">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Phasmophobia Expert Guide - Rozbudowana wersja</title>
-  <style>
-    /* Reset i podstawy */
-    * {
-      box-sizing: border-box;
-    }
-    body {
-      margin: 0; padding: 0;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-      background: #121212;
-      color: #eee;
-      line-height: 1.6;
-    }
-    h1, h2, h3, h4 {
-      margin: 0 0 12px 0;
-    }
-    a {
-      color: #0af;
-      text-decoration: none;
-    }
-    a:hover {
-      text-decoration: underline;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Phasmophobia - Kompletny Przewodnik</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Global styles for body */
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #1a202c; /* Dark background */
+            color: #e2e8f0; /* Light text */
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
 
-    header {
-      background-color: #1f1f1f;
-      padding: 20px;
-      text-align: center;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.7);
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
+        /* Navigation Bar styles */
+        .navbar {
+            background-color: #2d3748; /* Darker shade of background */
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        .nav-link {
+            padding: 0.75rem 1.25rem;
+            color: #a0aec0; /* Subtle grey */
+            font-weight: 600;
+            transition: color 0.3s ease, background-color 0.3s ease;
+            border-radius: 0.5rem;
+            cursor: pointer; /* Indicates clickable element */
+            white-space: nowrap; /* Prevents wrapping on small screens */
+        }
+        .nav-link:hover {
+            color: #ffffff;
+            background-color: #4a5568; /* Lighter grey on hover */
+        }
+        .nav-link.active {
+            color: #ffffff;
+            background-color: #3b82f6; /* Blue for active tab */
+            pointer-events: none; /* Disable clicks on active tab */
+        }
 
-    header h1 {
-      font-size: 2.5rem;
-      letter-spacing: 2px;
-      user-select: none;
-    }
+        /* Header Section styles */
+        .header-section {
+            background-image: url('https://static1.srcdn.com/wordpress/wp-content/uploads/2020/10/Phasmophobia-spirit-game.jpg'); /* Placeholder header image */
+            background-size: cover;
+            background-position: center;
+            height: 400px;
+            display: flex;
+            flex-direction: column; /* Align items vertically */
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            color: #ffffff;
+            padding: 0 1rem; /* Add some padding for smaller screens */
+        }
+        .header-section h1 {
+            font-size: 3.5rem; /* Larger font size for main title */
+            font-weight: 700;
+            margin-bottom: 0.5rem; /* Smaller margin to keep text closer */
+        }
+        .header-section p {
+            font-size: 1.5rem; /* Larger font size for subtitle */
+        }
 
-    nav {
-      margin-top: 15px;
-      display: flex;
-      justify-content: center;
-      gap: 20px;
-      flex-wrap: wrap;
-    }
+        /* Section Title styles */
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #90cdf4; /* Light blue for section titles */
+            margin-bottom: 2rem;
+            text-align: center;
+            padding-top: 1rem; /* Add padding to prevent content sticking to nav */
+        }
 
-    nav button {
-      background: none;
-      border: 2px solid #0af;
-      color: #0af;
-      padding: 10px 18px;
-      font-weight: 600;
-      font-size: 1rem;
-      border-radius: 8px;
-      cursor: pointer;
-      transition: background-color 0.3s ease, color 0.3s ease;
-    }
+        /* Card styles */
+        .card {
+            background-color: #2d3748;
+            border-radius: 0.75rem;
+            padding: 1.5rem;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.2);
+        }
+        .card-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 1rem;
+        }
+        .list-item {
+            margin-bottom: 0.5rem;
+            color: #cbd5e0;
+        }
 
-    nav button.active, nav button:hover {
-      background-color: #0af;
-      color: #121212;
-      box-shadow: 0 0 8px #0af;
-    }
+        /* Footer styles */
+        .footer {
+            background-color: #2d3748;
+            color: #a0aec0;
+            padding: 2rem 0;
+            text-align: center;
+            margin-top: 3rem;
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+        }
 
-    main {
-      max-width: 1100px;
-      margin: 30px auto;
-      padding: 0 20px 60px 20px;
-    }
-
-    section {
-      display: none;
-      animation: fadeIn 0.8s ease forwards;
-    }
-    section.active {
-      display: block;
-    }
-
-    @keyframes fadeIn {
-      from {opacity: 0; transform: translateY(10px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
-
-    /* Sekcja duchów */
-    .ghost-list {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(320px,1fr));
-      gap: 24px;
-    }
-
-    .ghost-card {
-      background: #232323;
-      border-radius: 12px;
-      padding: 18px 22px;
-      box-shadow: 0 6px 15px rgba(0,0,0,0.6);
-      display: flex;
-      flex-direction: column;
-      transition: transform 0.3s ease;
-    }
-    .ghost-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 24px #0af;
-    }
-
-    .ghost-card h3 {
-      color: #0af;
-      margin-bottom: 8px;
-      font-size: 1.5rem;
-    }
-
-    .ghost-card ul {
-      margin: 8px 0 0 18px;
-      padding-left: 0;
-    }
-
-    /* Narzędzia */
-    .tool-list {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 20px;
-      justify-content: center;
-    }
-    .tool-card {
-      background: #232323;
-      border-radius: 10px;
-      padding: 14px 18px;
-      width: 220px;
-      box-shadow: 0 5px 12px rgba(0,0,0,0.6);
-      transition: background-color 0.3s ease;
-      cursor: default;
-    }
-    .tool-card:hover {
-      background-color: #0a1f3a;
-      box-shadow: 0 8px 20px #0af;
-    }
-    .tool-card h4 {
-      margin-bottom: 6px;
-      color: #0af;
-    }
-
-    /* Mapy */
-    .maps {
-      display: grid;
-      grid-template-columns: repeat(auto-fit,minmax(280px,1fr));
-      gap: 25px;
-      justify-items: center;
-    }
-    .map-card {
-      background: #232323;
-      border-radius: 15px;
-      padding: 14px 16px;
-      box-shadow: 0 6px 14px rgba(0,0,0,0.7);
-      max-width: 320px;
-      text-align: center;
-      transition: transform 0.3s ease;
-    }
-    .map-card:hover {
-      transform: scale(1.05);
-      box-shadow: 0 14px 30px #0af;
-    }
-    .map-card img {
-      width: 100%;
-      height: auto;
-      border-radius: 10px;
-      margin-bottom: 12px;
-      user-select: none;
-    }
-    .map-card h4 {
-      color: #0af;
-      margin-bottom: 6px;
-    }
-
-    /* FAQ */
-    .faq-item {
-      background: #232323;
-      border-radius: 12px;
-      padding: 15px 18px;
-      margin-bottom: 15px;
-      box-shadow: 0 5px 15px rgba(0,0,0,0.5);
-      transition: box-shadow 0.3s ease;
-    }
-    .faq-item:hover {
-      box-shadow: 0 10px 24px #0af;
-    }
-    .faq-item h4 {
-      color: #0af;
-      cursor: pointer;
-      user-select: none;
-    }
-    .faq-item p {
-      margin-top: 6px;
-      font-size: 1rem;
-      line-height: 1.4;
-      color: #ccc;
-    }
-
-    /* Mechanika */
-    #mechanics ul {
-      list-style-type: disc;
-      padding-left: 22px;
-      margin-top: 10px;
-    }
-
-    /* Sekcja taktyk */
-    #tactics {
-      background: #1b1b1b;
-      border-radius: 15px;
-      padding: 22px 25px;
-      box-shadow: 0 7px 20px rgba(0,0,0,0.7);
-      margin-top: 30px;
-      color: #ddd;
-      line-height: 1.55;
-    }
-    #tactics h3 {
-      color: #0af;
-      margin-bottom: 12px;
-    }
-    #tactics ul {
-      margin-left: 20px;
-      list-style-type: square;
-    }
-
-    footer {
-      text-align: center;
-      padding: 25px 0;
-      background: #111;
-      color: #666;
-      font-size: 0.9rem;
-      user-select: none;
-    }
-
-    /* Responsive */
-    @media(max-width: 480px) {
-      nav {
-        gap: 12px;
-      }
-      .tool-card {
-        width: 100%;
-      }
-    }
-  </style>
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .header-section h1 {
+                font-size: 2.5rem;
+            }
+            .header-section p {
+                font-size: 1.25rem;
+            }
+            .section-title {
+                font-size: 2rem;
+            }
+            .nav-link {
+                padding: 0.5rem 0.75rem;
+                font-size: 0.875rem;
+            }
+        }
+    </style>
 </head>
 <body>
-  <header>
-    <h1>Phasmophobia Expert Guide</h1>
-    <nav aria-label="Nawigacja po sekcjach">
-      <button class="tab-button active" data-target="ghosts">Duchy</button>
-      <button class="tab-button" data-target="tools">Narzędzia</button>
-      <button class="tab-button" data-target="maps">Mapy</button>
-      <button class="tab-button" data-target="mechanics">Mechaniki</button>
-      <button class="tab-button" data-target="faq">FAQ</button>
-      <button class="tab-button" data-target="tactics">Taktyki</button>
+    <!-- Navigation Bar -->
+    <nav class="navbar">
+        <div class="container mx-auto flex flex-wrap justify-center space-x-2 md:space-x-4">
+            <a id="nav-about" class="nav-link" onclick="showSection('about')">O Grze</a>
+            <a id="nav-gameplay" class="nav-link" onclick="showSection('gameplay')">Mechanika Rozgrywki</a>
+            <a id="nav-ghost-types" class="nav-link" onclick="showSection('ghost-types')">Rodzaje Duchów</a>
+            <a id="nav-equipment" class="nav-link" onclick="showSection('equipment')">Sprzęt</a>
+            <a id="nav-maps" class="nav-link" onclick="showSection('maps')">Mapy</a>
+            <a id="nav-requirements" class="nav-link" onclick="showSection('requirements')">Wymagania Systemowe</a>
+            <a id="nav-resources" class="nav-link" onclick="showSection('resources')">Dodatkowe Zasoby</a>
+        </div>
     </nav>
-  </header>
 
-  <main>
-    <section id="ghosts" class="active">
-      <h2>Duchy i Ich Charakterystyka</h2>
-      <div class="ghost-list">
-        <!-- Lista duchów będzie wygenerowana JS -->
-      </div>
-    </section>
-
-    <section id="tools">
-      <h2>Narzędzia i Ich Zastosowanie</h2>
-      <div class="tool-list">
-        <!-- Narzędzia wygenerowane JS -->
-      </div>
-    </section>
-
-    <section id="maps">
-      <h2>Mapy i Porady Taktyczne</h2>
-      <div class="maps">
-        <div class="map-card">
-          <img src="https://static.wikia.nocookie.net/phasmophobia/images/3/3f/Map_Farmhouse.png" alt="Mapa Farmhouse" />
-          <h4>Farmhouse</h4>
-          <p>Idealne miejsce na początku. Duże otwarte przestrzenie ułatwiają kontrolę duchów i szybkie przemieszczanie się.</p>
+    <!-- Header Section -->
+    <header id="home" class="header-section">
+        <div class="container mx-auto">
+            <h1 class="text-5xl font-bold mb-4">Phasmophobia</h1>
+            <p class="text-xl">Kompletny Przewodnik po Nawiedzonych Tajemnicach</p>
         </div>
-        <div class="map-card">
-          <img src="https://static.wikia.nocookie.net/phasmophobia/images/a/a4/Map_Asylum.png" alt="Mapa Asylum" />
-          <h4>Asylum</h4>
-          <p>Obszerna i mroczna mapa z wieloma pokojami. Idealna do eksperymentów i trudniejszych polowań.</p>
-        </div>
-        <div class="map-card">
-          <img src="https://static.wikia.nocookie.net/phasmophobia/images/e/e8/Map_Midwife.png" alt="Mapa Midwife" />
-          <h4>Midwife</h4>
-          <p>Mapa pełna korytarzy i pokoi, wymaga dobrej komunikacji i współpracy zespołu.</p>
-        </div>
-        <div class="map-card">
-          <img src="https://static.wikia.nocookie.net/phasmophobia/images/7/7d/Map_Prison.png" alt="Mapa Prison" />
-          <h4>Prison</h4>
-          <p>Duża, zamknięta przestrzeń z ciasnymi korytarzami, idealna do pułapek i taktyk defensywnych.</p>
-        </div>
-        <div class="map-card">
-          <img src="https://static.wikia.nocookie.net/phasmophobia/images/9/9c/Map_School.png" alt="Mapa School" />
-          <h4>School</h4>
-          <p>Skupiona na wielu klasach i pokojach, z rozległymi korytarzami i dużą liczbą potencjalnych miejsc duchów.</p>
-        </div>
-      </div>
-    </section>
+    </header>
 
-    <section id="mechanics">
-      <h2>Mechaniki Gry i Strategie</h2>
-      <p>Phasmophobia to gra oparta na interakcjach z duchami, które reagują na różne bodźce i warunki.</p>
-      <ul>
-        <li><strong>Sanity:</strong> Obniżanie sanity zwiększa ryzyko polowań duchów i wpływa na zachowanie ducha.</li>
-        <li><strong>Dowody:</strong> Każdy duch zostawia unikatowe dowody, które należy zebrać, by go zidentyfikować.</li>
-        <li><strong>Hunting:</strong> Polowanie ducha zmusza graczy do ukrywania się lub ucieczki, by przetrwać.</li>
-        <li><strong>Komunikacja:</strong> Kluczowa dla koordynacji i skutecznej identyfikacji ducha.</li>
-      </ul>
-      <p>Warto zawsze zwracać uwagę na specyficzne zachowania duchów, takie jak zmiany temperatur, aktywność EMF i odgłosy.</p>
-    </section>
+    <main class="container mx-auto px-4 py-8">
+        <!-- About Section -->
+        <section id="about" class="my-12">
+            <h2 class="section-title">O Grze</h2>
+            <div class="card">
+                <p class="text-lg mb-4">Phasmophobia to kooperacyjna gra survival horror dla 4 graczy online, stworzona przez Kinetic Games i wydana 18 września 2020 roku. W tej grze, ty i twój zespół jesteście łowcami duchów, którzy muszą wykorzystać różnego rodzaju sprzęt do zbierania dowodów paranormalnych z nawiedzonych miejsc. Gra jest dostępna na PC, PlayStation 5 oraz Xbox Series X/S i oferuje pełne wsparcie dla VR.</p>
+                <p class="text-lg">Zanurz się w mroczny świat zjawisk nadprzyrodzonych, gdzie każdy szmer i cień może zwiastować spotkanie z duchem. Czy jesteś gotów na to wyzwanie?</p>
+            </div>
+        </section>
 
-    <section id="faq">
-      <h2>Najczęściej Zadawane Pytania (FAQ)</h2>
-      <div class="faq-item">
-        <h4>Jak rozpoznać ducha za pomocą dowodów?</h4>
-        <p>Obserwuj EMF Level 5, Fingerprints, Freezing Temperatures, Spirit Box, Ghost Writing oraz Ghost Orbs — każdy duch ma unikatowy zestaw dowodów.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Co zrobić podczas polowania ducha?</h4>
-        <p>Ukryj się w szafie lub za zamkniętymi drzwiami, zachowaj ciszę i nie poruszaj się, aby uniknąć zauważenia.</p>
-      </div>
-      <div class="faq-item">
-        <h4>Jakie narzędzia są najbardziej efektywne?</h4>
-        <p>EMF Reader, Spirit Box i UV Flashlight to kluczowe narzędzia, ale dobrze mieć przy sobie też Crucifix i Salt.</p>
-      </div>
-    </section>
+        <!-- Gameplay Mechanics Section -->
+        <section id="gameplay" class="my-12" style="display: none;">
+            <h2 class="section-title">Mechanika Rozgrywki</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="card-title">Cel Gry</h3>
+                    <p class="list-item">Głównym celem jest zebranie trzech rodzajów dowodów, które pomogą zidentyfikować ducha.</p>
+                    <p class="list-item">Istnieją również opcjonalne cele, które zapewniają dodatkowe nagrody pieniężne i doświadczenie.</p>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">Wskaźnik Poczytalności (Sanity)</h3>
+                    <p class="list-item">Twoja poczytalność spada, gdy przebywasz w ciemności, jesteś świadkiem zjawisk paranormalnych lub używasz tablicy Ouija.</p>
+                    <p class="list-item">Niska poczytalność zwiększa ryzyko, że duch rozpocznie polowanie.</p>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">Polowanie (Hunt)</h3>
+                    <p class="list-item">Kiedy duch rozpoczyna polowanie, staje się śmiertelnie niebezpieczny i może zabić graczy.</p>
+                    <p class="list-item">W tym czasie kluczowe jest ukrycie się, unikanie kontaktu wzrokowego z duchem i wyłączenie sprzętu elektronicznego.</p>
+                    <p class="list-item">Niektóre duchy mają unikalne zachowania podczas polowania, np. Revenant jest bardzo szybki, gdy widzi gracza, a Diogen może cię znaleźć nawet, gdy się ukrywasz.</p>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">Interakcje z Duchem</h3>
+                    <p class="list-item">Możesz próbować prowokować ducha, mówiąc jego imię (jeśli je znasz), aby wywołać aktywność, co ułatwi zbieranie dowodów.</p>
+                    <p class="list-item">Używaj sprzętu do komunikacji i obserwacji paranormalnych zjawisk.</p>
+                </div>
+            </div>
+        </section>
 
-    <section id="tactics">
-      <h2>Zaawansowane Taktyki i Porady</h2>
-      <div id="tactics-content">
-        <h3>Współpraca zespołowa</h3>
-        <p>Podzielcie się zadaniami — ktoś zbiera dowody, inny monitoruje EMF, a jeszcze inny pilnuje komunikacji. Dobre planowanie i komunikacja minimalizują ryzyko.</p>
+        <!-- Ghost Types Section -->
+        <section id="ghost-types" class="my-12" style="display: none;">
+            <h2 class="section-title">Rodzaje Duchów</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Spirit -->
+                <div class="card">
+                    <h3 class="card-title">Spirit</h3>
+                    <p class="list-item"><strong>Dowody:</strong> EMF Poziom 5, Spirit Box, Pismo Duchów</p>
+                    <p class="list-item"><strong>Cechy:</strong> Podstawowy duch, bez wyraźnych mocnych stron, ale wrażliwy na kadzidła.</p>
+                </div>
+                <!-- Wraith -->
+                <div class="card">
+                    <h3 class="card-title">Wraith</h3>
+                    <p class="list-item"><strong>Dowody:</strong> DOTS Projector, Spirit Box, Freezing Temperatures</p>
+                    <p class="list-item"><strong>Cechy:</strong> Nie zostawia śladów stóp w soli. Potrafi teleportować się do graczy. Bardzo aktywny.</p>
+                </div>
+                <!-- Phantom -->
+                <div class="card">
+                    <h3 class="card-title">Phantom</h3>
+                    <p class="list-item"><strong>Dowody:</strong> EMF Poziom 5, DOTS Projector, Spirit Box</p>
+                    <p class="list-item"><strong>Cechy:</strong> Sprawia, że poczytalność spada szybciej, gdy na niego patrzysz. Zrobienie zdjęcia sprawia, że znika.</p>
+                </div>
+                <!-- Poltergeist -->
+                <div class="card">
+                    <h3 class="card-title">Poltergeist</h3>
+                    <p class="list-item"><strong>Dowody:</strong> Spirit Box, Ultraviolet, Pismo Duchów</p>
+                    <p class="list-item"><strong>Cechy:</strong> Potrafi rzucać wieloma przedmiotami naraz.</p>
+                </div>
+                <!-- Banshee -->
+                <div class="card">
+                    <h3 class="card-title">Banshee</h3>
+                    <p class="list-item"><strong>Dowody:</strong> EMF Poziom 5, Odciski palców, Zamrażające temperatury</p>
+                    <p class="list-item"><strong>Cechy:</strong> Celuje w jednego gracza na raz.</p>
+                </div>
+                <!-- Jinn -->
+                <div class="card">
+                    <h3 class="card-title">Jinn</h3>
+                    <p class="list-item"><strong>Dowody:</strong> EMF Poziom 5, Spirit Box, DOTS Projector</p>
+                    <p class="list-item"><strong>Cechy:</strong> Im dalej jesteś, tym szybciej się porusza. Nie może wyłączyć skrzynki z bezpiecznikami.</p>
+                </div>
+                <!-- Mare -->
+                <div class="card">
+                    <h3 class="card-title">Mare</h3>
+                    <p class="list-item"><strong>Dowody:</strong> Ghost Orb, Spirit Box, Pismo Duchów</p>
+                    <p class="list-item"><strong>Cechy:</strong> Silniejszy w ciemności, słabszy w świetle. Poluje przy 40% poczytalności w świetle, 60% w ciemności.</p>
+                </div>
+                <!-- Revenant -->
+                <div class="card">
+                    <h3 class="card-title">Revenant</h3>
+                    <p class="list-item"><strong>Dowody:</strong> Ghost Orbs, Pismo Duchów, Zamrażające temperatury</p>
+                    <p class="list-item"><strong>Cechy:</strong> Bardzo szybki podczas polowania, gdy cię widzi, ale znacznie zwalnia, gdy się ukryjesz.</p>
+                </div>
+                <!-- Shade -->
+                <div class="card">
+                    <h3 class="card-title">Shade</h3>
+                    <p class="list-item"><strong>Dowody:</strong> EMF Poziom 5, Ghost Writing, Freezing Temperatures</p>
+                    <p class="list-item"><strong>Cechy:</strong> Nieśmiały duch, rzadziej pojawia się, gdy gracze są razem. Mała szansa na polowanie przy wysokiej poczytalności.</p>
+                </div>
+                <!-- Demon -->
+                <div class="card">
+                    <h3 class="card-title">Demon</h3>
+                    <p class="list-item"><strong>Dowody:</strong> Freezing Temperatures, Ghost Writing, Spirit Box</p>
+                    <p class="list-item"><strong>Cechy:</strong> Bardzo agresywny i może polować przy wysokiej poczytalności. Krzyż ma zwiększony zasięg przeciwko niemu.</p>
+                </div>
+                <!-- Yurei -->
+                <div class="card">
+                    <h3 class="card-title">Yurei</h3>
+                    <p class="list-item"><strong>Dowody:</strong> Freezing Temperatures, Ghost Orb, DOTS Projector</p>
+                    <p class="list-item"><strong>Cechy:</strong> Znacznie obniża poczytalność. Użycie kadzidła w pokoju ducha zapobiega jego ruchowi.</p>
+                </div>
+                <!-- Oni -->
+                <div class="card">
+                    <h3 class="card-title">Oni</h3>
+                    <p class="list-item"><strong>Dowody:</strong> EMF Poziom 5, DOTS Projector, Spirit Box</p>
+                    <p class="list-item"><strong>Cechy:</strong> Jest bardzo aktywny, gdy wokół są gracze. Może poruszać przedmiotami z dużą siłą.</p>
+                </div>
+                <!-- Hantu -->
+                <div class="card">
+                    <h3 class="card-title">Hantu</h3>
+                    <p class="list-item"><strong>Dowody:</strong> Odciski palców, Ghost Orb, Zamrażające temperatury</p>
+                    <p class="list-item"><strong>Cechy:</strong> Jego prędkość wzrasta wraz ze spadkiem temperatury. Jest szybszy w zimnych pomieszczeniach.</p>
+                </div>
+                <!-- Yokai -->
+                <div class="card">
+                    <h3 class="card-title">Yokai</h3>
+                    <p class="list-item"><strong>Dowody:</strong> Spirit Box, DOTS Projector, Ghost Orb</p>
+                    <p class="list-item"><strong>Cechy:</strong> Staje się agresywny, gdy słyszy głosy w pobliżu. Poluje przy 80% poczytalności, jeśli gracz do niego mówi.</p>
+                </div>
+                <!-- Goryo -->
+                <div class="card">
+                    <h3 class="card-title">Goryo</h3>
+                    <p class="list-item"><strong>Dowody:</strong> EMF Poziom 5, Odciski palców, DOTS Projector</p>
+                    <p class="list-item"><strong>Cechy:</strong> Jest widoczny na Projektorze DOTS tylko przez kamerę wideo, gdy w pobliżu nie ma nikogo. Nie zmienia ulubionego pokoju.</p>
+                </div>
+                <!-- Myling -->
+                <div class="card">
+                    <h3 class="card-title">Myling</h3>
+                    <p class="list-item"><strong>Dowody:</strong> EMF Poziom 5, Ultraviolet, Pismo Duchów</p>
+                    <p class="list-item"><strong>Cechy:</strong> Cichy podczas polowania, co utrudnia wykrycie jego kroków, ale jest bardziej słyszalny przez mikrofon paraboliczny.</p>
+                </div>
+                <!-- Onryo -->
+                <div class="card">
+                    <h3 class="card-title">Onryo</h3>
+                    <p class="list-item"><strong>Dowody:</strong> Spirit Box, Ghost Orb, Freezing Temperatures</p>
+                    <p class="list-item"><strong>Cechy:</strong> Zwiększa szansę na polowanie, gdy zgaśnie świeca. Użycie kadzidła zapobiega temu.</p>
+                </div>
+                <!-- Raiju -->
+                <div class="card">
+                    <h3 class="card-title">Raiju</h3>
+                    <p class="list-item"><strong>Dowody:</strong> EMF Poziom 5, DOTS Projector, Ghost Orb</p>
+                    <p class="list-item"><strong>Cechy:</strong> Szybciej porusza się podczas polowania, gdy w pobliżu są urządzenia elektroniczne.</p>
+                </div>
+                <!-- Obake -->
+                <div class="card">
+                    <h3 class="card-title">Obake</h3>
+                    <p class="list-item"><strong>Dowody:</strong> EMF Poziom 5, Odciski palców, Ghost Orb</p>
+                    <p class="list-item"><strong>Cechy:</strong> Może zostawić unikalny odcisk palca (6 palców). Może bardzo szybko zmieniać formę podczas interakcji.</p>
+                </div>
+                <!-- The Twins -->
+                <div class="card">
+                    <h3 class="card-title">The Twins</h3>
+                    <p class="list-item"><strong>Dowody:</strong> EMF Poziom 5, Spirit Box, Freezing Temperatures</p>
+                    <p class="list-item"><strong>Cechy:</strong> Posiada dwie "formy" - jedna jest wolniejsza, druga szybsza. Mogą wchodzić w interakcje w dwóch różnych miejscach jednocześnie.</p>
+                </div>
+                <!-- Thaye -->
+                <div class="card">
+                    <h3 class="card-title">Thaye</h3>
+                    <p class="list-item"><strong>Dowody:</strong> DOTS Projector, Ghost Orb, Ghost Writing</p>
+                    <p class="list-item"><strong>Cechy:</strong> Jest młodszy i bardziej aktywny na początku misji, staje się starszy i mniej aktywny, gdy gracze spędzają czas w jego pobliżu. Jego prędkość zależy od tego, jak "młody" jest.</p>
+                </div>
+                <!-- Deogen -->
+                <div class="card">
+                    <h3 class="card-title">Deogen</h3>
+                    <p class="list-item"><strong>Dowody:</strong> Spirit Box, Ghost Writing, DOTS Projector</p>
+                    <p class="list-item"><strong>Cechy:</strong> Zawsze wie, gdzie jesteś i będzie cię gonił, ale zwalnia, gdy jest blisko ciebie. Szybki z daleka, wolny z bliska.</p>
+                </div>
+                <!-- Moroi -->
+                <div class="card">
+                    <h3 class="card-title">Moroi</h3>
+                    <p class="list-item"><strong>Dowody:</strong> Freezing Temperatures, Ghost Writing, Spirit Box</p>
+                    <p class="list-item"><strong>Cechy:</strong> Im dłużej jesteś blisko niego w ciemności, tym szybciej spada Twoja poczytalność. Użycie kadzidła tymczasowo przywraca część poczytalności i dezorientuje Moroi.</p>
+                </div>
+                <!-- The Mimic -->
+                <div class="card">
+                    <h3 class="card-title">The Mimic</h3>
+                    <p class="list-item"><strong>Dowody:</strong> Spirit Box, Ultraviolet, Zamrażające temperatury, Ghost Orb (Zawsze ma to jako 4. dowód)</p>
+                    <p class="list-item"><strong>Cechy:</strong> Może naśladować cechy innych duchów, co czyni go trudnym do zidentyfikowania. Zawsze generuje Ghost Orbs jako dowód, niezależnie od naśladowanego typu.</p>
+                </div>
+            </div>
+        </section>
 
-        <h3>Obserwacja zachowań</h3>
-        <ul>
-          <li>Uwaga na szybkie zmiany temperatur — często zwiastują obecność ducha.</li>
-          <li>Słuchajcie odgłosów, które mogą wskazywać na aktywność lub polowanie ducha.</li>
-          <li>Używajcie kamer, aby mieć wizualną kontrolę nad pomieszczeniami.</li>
-        </ul>
+        <!-- Equipment Section -->
+        <section id="equipment" class="my-12" style="display: none;">
+            <h2 class="section-title">Sprzęt Łowcy Duchów</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Primary Equipment -->
+                <div class="card">
+                    <h3 class="card-title">Podstawowy Sprzęt</h3>
+                    <ul class="list-disc pl-5">
+                        <li class="list-item"><strong>Latarka (Flashlight):</strong> Niezbędna do poruszania się w ciemności i utrzymywania poczytalności.</li>
+                        <li class="list-item"><strong>Czytnik EMF (EMF Reader):</strong> Wykrywa fluktuacje pól elektromagnetycznych, wskazując aktywność ducha.</li>
+                        <li class="list-item"><strong>Spirit Box:</strong> Umożliwia komunikację z niektórymi duchami poprzez pytania.</li>
+                        <li class="list-item"><strong>Książka do pisania duchów (Ghost Writing Book):</strong> Duchy mogą w niej pisać.</li>
+                        <li class="list-item"><strong>Kamera wideo (Video Camera):</strong> Służy do obserwacji pomieszczeń i poszukiwania Ghost Orbs z bezpiecznej odległości.</li>
+                        <li class="list-item"><strong>Termometr (Thermometer):</strong> Mierzy temperaturę w pomieszczeniu; zamrażające temperatury są dowodem na obecność niektórych duchów.</li>
+                        <li class="list-item"><strong>Projektor DOTS (DOTS Projector):</strong> Wyświetla siatkę laserową, przez którą duchy mogą przechodzić, ukazując swoją sylwetkę.</li>
+                        <li class="list-item"><strong>Światło UV (UV Light):</strong> Używane do wykrywania odcisków palców i śladów stóp pozostawionych przez duchy.</li>
+                    </ul>
+                </div>
+                <!-- Additional Equipment -->
+                <div class="card">
+                    <h3 class="card-title">Dodatkowy Sprzęt</h3>
+                    <ul class="list-disc pl-5">
+                        <li class="list-item"><strong>Krzyż (Crucifix):</strong> Zapobiega rozpoczęciu polowania w swoim zasięgu.</li>
+                        <li class="list-item"><strong>Kadzidła (Smudge Sticks):</strong> Na chwilę dezorientują ducha i zapobiegają polowaniu.</li>
+                        <li class="list-item"><strong>Sól (Salt Shaker):</strong> Duchy pozostawiają ślady stóp po przejściu przez sól.</li>
+                        <li class="list-item"><strong>Kamera fotograficzna (Photo Camera):</strong> Służy do robienia zdjęć dowodów i zjawisk paranormalnych, co przynosi dodatkowe pieniądze.</li>
+                        <li class="list-item"><strong>Pigułki na poczytalność (Sanity Pills):</strong> Przywracają część utraconej poczytalności.</li>
+                        <li class="list-item"><strong>Paraboliczny mikrofon (Parabolic Microphone):</strong> Wykrywa dźwięki paranormalne z dużej odległości.</li>
+                        <li class="list-item"><strong>Czujniki ruchu (Motion Sensors) i czujniki dźwięku (Sound Sensors):</strong> Pomagają w lokalizowaniu ducha i monitorowaniu jego aktywności.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-        <h3>Wykorzystanie narzędzi</h3>
-        <ul>
-          <li>Salt kładźcie przy wejściach, by ograniczyć dostęp ducha.</li>
-          <li>Crucifix używajcie strategicznie, by zapobiegać polowaniom w newralgicznych miejscach.</li>
-          <li>UV Flashlight pozwala znaleźć odciski palców i inne dowody niedostępne gołym okiem.</li>
-        </ul>
+        <!-- Maps Section -->
+        <section id="maps" class="my-12" style="display: none;">
+            <h2 class="section-title">Mapy</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card">
+                    <h3 class="card-title">Małe Mapy</h3>
+                    <ul class="list-disc pl-5">
+                        <li class="list-item"><strong>Tanglewood Street House:</strong> Podstawowy, mały dom, idealny dla początkujących.</li>
+                        <li class="list-item"><strong>Ridgeview Road House:</strong> Kolejny dom, oferujący nieco większe wyzwanie.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">Średnie Mapy</h3>
+                    <ul class="list-disc pl-5">
+                        <li class="list-item"><strong>Edgefield Road:</strong> Większy dom z piwnicą.</li>
+                        <li class="list-item"><strong>Bleasdale Farmhouse i Grafton Farmhouse:</strong> Nawiedzone farmy o klaustrofobicznych układach. Bleasdale Farmhouse niedawno otrzymał wizualne i układowe zmiany w ramach przebudowy map.</li>
+                        <li class="list-item"><strong>Camp Woodwind:</strong> Mapa na świeżym powietrzu, z ograniczoną liczbą miejsc do ukrycia.</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">Duże Mapy</h3>
+                    <ul class="list-disc pl-5">
+                        <li class="list-item"><strong>Brownstone High School:</strong> Duża szkoła z wieloma pomieszczeniami.</li>
+                        <li class="list-item"><strong>Prison:</strong> Ogromne więzienie, wymagające dużej koordynacji.</li>
+                        <li class="list-item"><strong>Sunny Meadows Mental Institution:</strong> Duży i przerażający szpital psychiatryczny.</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-        <h3>Psychologia ducha</h3>
-        <p>Niektóre duchy są bardziej agresywne, inne — subtelne. Zrozumienie ich zachowań pozwala skuteczniej przewidywać ich ruchy i unikać niebezpieczeństw.</p>
-      </div>
-    </section>
-  </main>
+        <!-- System Requirements Section -->
+        <section id="requirements" class="my-12" style="display: none;">
+            <h2 class="section-title">Wymagania Systemowe</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="card">
+                    <h3 class="card-title">Minimalne Wymagania (dla VR)</h3>
+                    <ul class="list-disc pl-5">
+                        <li class="list-item"><strong>System operacyjny:</strong> Windows 10 64-bit</li>
+                        <li class="list-item"><strong>Procesor:</strong> Intel Core i5-4590 / AMD Ryzen 5 2600</li>
+                        <li class="list-item"><strong>Pamięć RAM:</strong> 8 GB</li>
+                        <li class="list-item"><strong>Karta graficzna:</strong> NVIDIA GTX 970 / AMD Radeon R9 390</li>
+                        <li class="list-item"><strong>DirectX:</strong> Wersja 11</li>
+                        <li class="list-item"><strong>Miejsce na dysku:</strong> 21 GB dostępnej przestrzeni</li>
+                    </ul>
+                </div>
+                <div class="card">
+                    <h3 class="card-title">Zalecane Wymagania</h3>
+                    <ul class="list-disc pl-5">
+                        <li class="list-item"><strong>System operacyjny:</strong> Windows 10 64-bit</li>
+                        <li class="list-item"><strong>Procesor:</strong> Intel Core i5-10600 / AMD Ryzen 5 3600</li>
+                        <li class="list-item"><strong>Pamięć RAM:</strong> 8 GB</li>
+                        <li class="list-item"><strong>Karta graficzna:</strong> NVIDIA RTX 2060 / AMD Radeon RX 5700</li>
+                        <li class="list-item"><strong>DirectX:</strong> Wersja 11</li>
+                        <li class="list-item"><strong>Sieć:</strong> Szerokopasmowe połączenie internetowe</li>
+                        <li class="list-item"><strong>Miejsce na dysku:</strong> 21 GB dostępnej przestrzeni</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
 
-  <footer>
-    <p>© 2025 Phasmophobia Expert Guide | Projekt stworzony przez PhantomZone</p>
-  </footer>
+        <!-- Additional Resources Section -->
+        <section id="resources" class="my-12" style="display: none;">
+            <h2 class="section-title">Dodatkowe Zasoby</h2>
+            <div class="card">
+                <ul class="list-disc pl-5">
+                    <li class="list-item"><a href="https://store.steampowered.com/app/739630/Phasmophobia/" target="_blank" class="text-blue-400 hover:underline">Phasmophobia na Steam</a></li>
+                    <li class="list-item"><a href="https://www.playstation.com/en-dk/games/phasmophobia/" target="_blank" class="text-blue-400 hover:underline">Phasmophobia - PlayStation</a></li>
+                    <li class="list-item"><a href="https://www.kineticgames.co.uk/blog/phasmophobia-2025-roadmap" target="_blank" class="text-blue-400 hover:underline">Phasmophobia - Roadmap for 2025 and Beyond - Kinetic Games</a></li>
+                    <li class="list-item"><a href="https://www.thegamer.com/phasmophobia-ghost-types-ranked/" target="_blank" class="text-blue-400 hover:underline">Phasmophobia: Every Ghost Type, Ranked - TheGamer</a></li>
+                    <li class="list-item"><a href="https://gamerant.com/phasmophobia-best-equipment-upgrades-get-first/" target="_blank" class="text-blue-400 hover:underline">Phasmophobia: Best Equipment Upgrades To Get First - Game Rant</a></li>
+                </ul>
+            </div>
+        </section>
+    </main>
 
-  <script>
-    // Dane duchów (rozszerzone)
-    const ghosts = [
-      {
+    <!-- Footer -->
+    <footer class="footer">
+        <p>&copy; 2025 Przewodnik po Phasmophobii. Wszelkie prawa zastrzeżone.</p>
+    </footer>
 
-      "name": "Spirit",
-      "desc": "Najbardziej podstawowy duch, łatwy do zidentyfikowania i mniej agresywny.",
-      "evidence": ["EMF Level 5", "Spirit Box", "Ghost Writing"],
-      "weaknesses": "Reaguje na modlitwy i obecność Crucifix."
-    },
-    {
-      "name": "Wraith",
-      "desc": "Duch, który może przechodzić przez ściany i nie zostawia śladów fizycznych.",
-      "evidence": ["EMF Level 5", "Spirit Box", "UV Flashlight"],
-      "weaknesses": "Unika soli i jest bardziej niebezpieczny podczas polowania."
-    },
-    {
-      "name": "Phantom",
-      "desc": "Duch, który po spojrzeniu na niego może obniżyć sanity gracza.",
-      "evidence": ["Freezing Temperatures", "Spirit Box", "Ghost Orbs"],
-      "weaknesses": "Zdjęcie ducha może go tymczasowo zniknąć."
-    },
-    {
-      "name": "Poltergeist",
-      "desc": "Znany z rzucania przedmiotami i wywoływania hałasu.",
-      "evidence": ["Spirit Box", "UV Flashlight", "Ghost Orbs"],
-      "weaknesses": "Jest mniej skuteczny, gdy nie ma obiektów do rzucania."
-    },
-    {
-      "name": "Banshee",
-      "desc": "Celuje w jednego gracza i jest bardziej agresywny.",
-      "evidence": ["UV Flashlight", "Freezing Temperatures", "Ghost Orbs"],
-      "weaknesses": "Crucifix może zapobiec polowaniu na wybranego gracza."
-    },
-    {
-      "name": "Demon",
-      "desc": "Bardzo agresywny duch, który często poluje i jest trudny do zatrzymania.",
-      "evidence": ["Spirit Box", "Ghost Writing", "Freezing Temperatures"],
-      "weaknesses": "Modlitwy znacznie spowalniają jego aktywność."
-    },
-    {
-      "name": "Deogen",
-      "desc": "Duch zakłócający działanie elektroniki, szczególnie lamp i urządzeń.",
-      "evidence": ["Spirit Box", "UV Flashlight", "Ghost Orbs"],
-      "weaknesses": "Działa słabiej w obecności światła."
-    },
-    {
-      "name": "Goryo",
-      "desc": "Rzadki duch widoczny jedynie na kamerach, unika obecności ludzi.",
-      "evidence": ["EMF Level 5", "UV Flashlight", "Ghost Orbs"],
-      "weaknesses": "Rzadko pojawia się w obecności wielu graczy."
-    },
-    {
-      "name": "Hantu",
-      "desc": "Duch preferujący zimne temperatury, potrafi skutecznie zamrażać pomieszczenia.",
-      "evidence": ["Freezing Temperatures", "UV Flashlight", "Ghost Writing"],
-      "weaknesses": "Porusza się wolniej w wyższych temperaturach."
-    },
-    {
-      "name": "Jinn",
-      "desc": "Szybko porusza się, gdy ofiary są daleko.",
-      "evidence": ["EMF Level 5", "UV Flashlight", "Freezing Temperatures"],
-      "weaknesses": "Wyłączanie prądu spowalnia ducha."
-    },
-    {
-      "name": "Mare",
-      "desc": "Duch, który może powodować senne wizje i halucynacje.",
-      "evidence": ["Spirit Box", "Ghost Orbs", "Ghost Writing"],
-      "weaknesses": "Światło zmniejsza jego aktywność."
-    },
-    {
-      "name": "Moroi",
-      "desc": "Duch, który wpływa na energię i często powoduje szybkie obniżenie sanity.",
-      "evidence": ["Spirit Box", "Ghost Writing", "Freezing Temperatures"],
-      "weaknesses": "Modlitwy mogą spowolnić jego aktywność."
-    },
-    {
-      "name": "Myling",
-      "desc": "Cichy duch, który rzadziej robi hałas podczas polowań.",
-      "evidence": ["EMF Level 5", "UV Flashlight", "Ghost Writing"],
-      "weaknesses": "Hałas ułatwia jego lokalizację."
-    },
-    {
-      "name": "Obake",
-      "desc": "Duch, który szybko zmienia pozycję i zostawia odciski palców.",
-      "evidence": ["EMF Level 5", "UV Flashlight", "Ghost Writing"],
-      "weaknesses": "Jest bardziej aktywny w ciemności."
-    },
-    {
-      "name": "Oni",
-      "desc": "Silny duch, który jest bardziej aktywny w obecności wielu ludzi.",
-      "evidence": ["EMF Level 5", "Ghost Orbs", "Ghost Writing"],
-      "weaknesses": "Jest mniej aktywny, gdy jest sam."
-    },
-    {
-      "name": "Onryo",
-      "desc": "Duch, który potrafi zamrozić temperaturę do zera.",
-      "evidence": ["Freezing Temperatures", "Spirit Box", "Ghost Writing"],
-      "weaknesses": "Światło może zmniejszyć jego aktywność."
-    },
-    {
-      "name": "Raiju",
-      "desc": "Duch poruszający się szybciej w obecności elektroniki.",
-      "evidence": ["EMF Level 5", "Spirit Box", "UV Flashlight"],
-      "weaknesses": "Wyłączanie urządzeń spowalnia jego ruchy."
-    },
-    {
-      "name": "Revenant",
-      "desc": "Bardzo szybki duch, który poluje na jednego celu.",
-      "evidence": ["EMF Level 5", "Ghost Writing", "UV Flashlight"],
-      "weaknesses": "Spowalnia, jeśli jest ścigany przez wielu graczy."
-    },
-    {
-      "name": "Shade",
-      "desc": "Nieśmiały duch, który unika grup graczy.",
-      "evidence": ["EMF Level 5", "Ghost Writing", "Freezing Temperatures"],
-      "weaknesses": "Łatwiej poluje na samotnych."
-    },
-    {
-      "name": "Thaye",
-      "desc": "Rzadki duch znany z agresywnego zachowania.",
-      "evidence": ["Spirit Box", "UV Flashlight", "Freezing Temperatures"],
-      "weaknesses": "Wrażliwy na Crucifix."
-    },
-    {
-      "name": "The Mimic",
-      "desc": "Potrafi naśladować dowolnego ducha, zmieniając swoje dowody.",
-      "evidence": ["Ghost Orbs", "EMF Level 5", "Spirit Box", "Freezing Temperatures"],
-      "weaknesses": "Jest bardziej agresywny niż inne duchy."
-    },
-    {
-      "name": "The Twins",
-      "desc": "Para duchów działających razem, mogą polować jednocześnie.",
-      "evidence": ["EMF Level 5", "Spirit Box", "Ghost Writing"],
-      "weaknesses": "Są bardziej podatni na rozproszenie."
-    },
-    {
-      "name": "Yurei",
-      "desc": "Duch, który szybciej wysysa sanity z graczy.",
-      "evidence": ["Freezing Temperatures", "Ghost Orbs", "Ghost Writing"],
-      "weaknesses": "Sól ogranicza jego aktywność."
-    },
-    {
-      "name": "Yokai",
-      "desc": "Duch, który hałasuje gdy jest blisko, ale nie poluje często.",
-      "evidence": ["Spirit Box", "Fingerprints", "Ghost Orbs"],
-      "weaknesses": "Jest mniej aktywny jeśli wokół jest wiele osób."
-    }
-  ];
+    <script>
+        // Function to show the selected section and hide others
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('main section');
+            sections.forEach(section => {
+                section.style.display = 'none';
+            });
 
-    // Narzędzia
-    const tools = [
-      { name: "EMF Reader", desc: "Wykrywa pola elektromagnetyczne, które duchy emitują." },
-      { name: "Spirit Box", desc: "Umożliwia komunikację z duchami przez radiowy sprzęt." },
-      { name: "UV Flashlight", desc: "Ujawnia odciski palców i ślady krwi." },
-      { name: "Thermometer", desc: "Mierzy temperaturę w pomieszczeniach, wskazuje na obecność duchów." },
-      { name: "Video Camera", desc: "Rejestruje aktywność paranormalną i duchy." },
-      { name: "Photo Camera", desc: "Robi zdjęcia, które mogą uchwycić ducha." },
-      { name: "Crucifix", desc: "Przedmiot, który spowalnia lub zapobiega polowaniom ducha." },
-      { name: "Motion Sensor", desc: "Wykrywa ruch duchów i graczy." },
-      { name: "Sound Sensor", desc: "Wykrywa dźwięki i aktywność." },
-      { name: "Salt", desc: "Może być używany do blokowania duchów lub wykrywania ich obecności." }
-    ];
+            // Show the selected section
+            const activeSection = document.getElementById(sectionId);
+            if (activeSection) {
+                activeSection.style.display = 'block';
+            }
 
-    // Generowanie duchów
-    function generateGhostList() {
-      const container = document.querySelector('.ghost-list');
-      ghosts.forEach(ghost => {
-        const ghostCard = document.createElement('div');
-        ghostCard.classList.add('ghost-card');
-        ghostCard.innerHTML = `
-          <h3>${ghost.name}</h3>
-          <p>${ghost.desc}</p>
-          <h4>Dowody:</h4>
-          <ul>${ghost.evidence.map(e => `<li>${e}</li>`).join('')}</ul>
-          <h4>Słabości i strategie:</h4>
-          <p>${ghost.weaknesses}</p>
-        `;
-        container.appendChild(ghostCard);
-      });
-    }
+            // Set active class for the navigation link
+            const navLinks = document.querySelectorAll('.nav-link');
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+            });
+            const activeNavLink = document.getElementById('nav-' + sectionId);
+            if (activeNavLink) {
+                activeNavLink.classList.add('active');
+            }
+        }
 
-    // Generowanie narzędzi
-    function generateToolList() {
-      const container = document.querySelector('.tool-list');
-      tools.forEach(tool => {
-        const toolCard = document.createElement('div');
-        toolCard.classList.add('tool-card');
-        toolCard.innerHTML = `
-          <h4>${tool.name}</h4>
-          <p>${tool.desc}</p>
-        `;
-        container.appendChild(toolCard);
-      });
-    }
-
-    // Obsługa zakładek
-    const tabs = document.querySelectorAll('.tab-button');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        // Aktywuj przycisk
-        tabs.forEach(t => t.classList.remove('active'));
-        tab.classList.add('active');
-
-        // Pokaż właściwą sekcję
-        const targetId = tab.getAttribute('data-target');
-        document.querySelectorAll('main > section').forEach(section => {
-          if (section.id === targetId) {
-            section.style.display = 'block';
-          } else {
-            section.style.display = 'none';
-          }
-        });
-      });
-    });
-
-    // Inicjalizacja strony
-    window.addEventListener('DOMContentLoaded', () => {
-      generateGhostList();
-      generateToolList();
-
-      // Domyślnie pokaż pierwszą zakładkę
-      tabs[0].click();
-    });
-  </script>
+        // Show the "About" section when the page loads
+        window.onload = function() {
+            showSection('about');
+        };
+    </script>
 </body>
 </html>
